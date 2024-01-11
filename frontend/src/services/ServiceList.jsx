@@ -9,12 +9,12 @@ import customizationImg from "../assets/images/customization.png";
 const servicesData = [
   {
     imgUrl: weatherImg,
-    title: "Calculate Weather",
+    title: "The best quality cars",
     desc: "Description required",
   },
   {
     imgUrl: guideImg,
-    title: "Best Tour Guide",
+    title: "Best sales guide",
     desc: "Description required",
   },
   {

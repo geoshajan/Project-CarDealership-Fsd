@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import CommonSection from "../shared/CommonSection";
 import { Col, Container, Row } from "reactstrap";
-import TourCard from "../shared/TourCard";
+import carCard from "../shared/CarCard";
 import Newsletter from "../shared/Newsletter";
 
 const SearchResultList = () => {
@@ -12,16 +12,16 @@ const SearchResultList = () => {
 
   return (
     <>
-      <CommonSection title={"Tour Search Result"} />
+      <CommonSection title={"car Search Result"} />
       <section>
         <Container>
           <Row>
             {data.length == 0 ? (
-              <h4 className="text-center">No tour found</h4>
+              <h4 className="text-center">No car found</h4>
             ) : (
-              data?.map((tour) => (
-                <Col lg="3" className="mb-4" key={tour._id}>
-                  <TourCard tour={tour} />
+              data?.map((car) => (
+                <Col lg="3" className="mb-4" key={car._id}>
+                  <carCard car={car} />
                 </Col>
               ))
             )}

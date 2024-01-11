@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
-import "../styles/tour-details.css";
+import "../styles/car-details.css";
 import { Container, Row, Col, Form, ListGroup } from "reactstrap";
 import { useParams } from "react-router-dom";
 import calculateAvgRating from "../utils/avgRatings";
@@ -10,14 +10,14 @@ import useFetch from "../hooks/useFetch";
 import { BASE_URL } from "../utils/config";
 import { AuthContext } from "../context/AuthContext";
 
-const TourDetails = () => {
+const CarDetails = () => {
   const { id } = useParams();
   const reviewMsgRef = useRef("");
-  const [tourRating, settourRating] = useState(null);
+  const [carRating, setcarRating] = useState(null);
   const { user } = useContext(AuthContext);
 
-  // const tour = tourData.find((tour) => tour.id == id);
-  const { data: tour, loading, error } = useFetch(`${BASE_URL}/tours/${id}`);
+  // const car = carData.find((car) => car.id == id);
+  const { data: car, loading, error } = useFetch(`${BASE_URL}/cars/${id}`);
 
   const {
     photo,
@@ -29,7 +29,7 @@ const TourDetails = () => {
     city,
     distance,
     maxGroupSize,
-  } = tour;
+  } = car;
 
   const { totalRating, avgRating } = calculateAvgRating(reviews);
 
@@ -46,7 +46,7 @@ const TourDetails = () => {
       const reviewObj = {
         username: user?.username,
         reviewText,
-        rating: tourRating,
+        rating: carRating,
       };
       const res = await fetch(`${BASE_URL}/review/${id}`, {
         method: "post",
@@ -68,7 +68,7 @@ const TourDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [tour]);
+  }, [car]);
 
   return (
     <>
@@ -80,12 +80,12 @@ const TourDetails = () => {
           {!loading && !error && (
             <Row>
               <Col lg="8">
-                <div className="tour__content">
+                <div className="car__content">
                   <img src={photo} alt="" />
-                  <div className="tour__info">
+                  <div className="car__info">
                     <h2>{title}</h2>
                     <div className="d-flex align-items-center gap-5">
-                      <span className="tour__rating d-flex align-items-center gap-1">
+                      <span className="car__rating d-flex align-items-center gap-1">
                         <i
                           class="ri-star-fill"
                           style={{ color: "var(--secondary-color)" }}
@@ -102,7 +102,7 @@ const TourDetails = () => {
                         <i class="ri-map-pin-user-fill"></i> {address}
                       </span>
                     </div>
-                    <div className="tour__extra-details">
+                    <div className="car__extra-details">
                       <span>
                         <i class="ri-map-pin-2-line"></i> {city}
                       </span>
@@ -120,24 +120,24 @@ const TourDetails = () => {
                     <h5>Description</h5>
                     <p>{desc}</p>
                   </div>
-                  {/*=========tour reviews section start========*/}
-                  <div className="tour__reviews mt-4">
+                  {/*=========car reviews section start========*/}
+                  <div className="car__reviews mt-4">
                     <h4>Reviews ({reviews?.length} reviews)</h4>
                     <Form onSubmit={submitHandler}>
                       <div className="d-flex align-items-center gap-3 mb-4 rating__group">
-                        <span onClick={() => settourRating(1)}>
+                        <span onClick={() => setcarRating(1)}>
                           1 <i class="ri-star-s-fill"></i>
                         </span>
-                        <span onClick={() => settourRating(2)}>
+                        <span onClick={() => setcarRating(2)}>
                           2 <i class="ri-star-s-fill"></i>
                         </span>
-                        <span onClick={() => settourRating(3)}>
+                        <span onClick={() => setcarRating(3)}>
                           3 <i class="ri-star-s-fill"></i>
                         </span>
-                        <span onClick={() => settourRating(4)}>
+                        <span onClick={() => setcarRating(4)}>
                           4 <i class="ri-star-s-fill"></i>
                         </span>
-                        <span onClick={() => settourRating(5)}>
+                        <span onClick={() => setcarRating(5)}>
                           5 <i class="ri-star-s-fill"></i>
                         </span>
                       </div>
@@ -181,11 +181,11 @@ const TourDetails = () => {
                     </ListGroup>
                   </div>
 
-                  {/*=========tour reviews section end========*/}
+                  {/*=========car reviews section end========*/}
                 </div>
               </Col>
               <Col lg="4">
-                <Booking tour={tour} avgRating={avgRating} />
+                <Booking car={car} avgRating={avgRating} />
               </Col>
             </Row>
           )}
@@ -196,4 +196,4 @@ const TourDetails = () => {
   );
 };
 
-export default TourDetails;
+export default CarDetails;

@@ -1,21 +1,21 @@
-.tour__content img {
+.car__content img {
   width: 100%;
   border-radius: 0.5rem;
   margin-bottom: 2.5rem;
 }
 
-.tour__info,
-.tour__reviews {
+.car__info,
+.car__reviews {
   border-radius: 0.5rem;
   border: 1px solid rgb(229, 231, 235);
   padding: 2rem;
 }
 
-.tour__info h2 {
+.car__info h2 {
   font-size: 1.5rem;
 }
 
-.tour__info span {
+.car__info span {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -23,12 +23,12 @@
   color: var(--text-color);
 }
 
-.tour__info span i {
+.car__info span i {
   color: var(--heading-color);
   font-size: 1.1rem;
 }
 
-.tour__extra-details {
+.car__extra-details {
   display: flex;
   column-gap: 2.7rem;
   margin-top: 1rem;
@@ -36,12 +36,12 @@
   margin-bottom: 2.5rem;
 }
 
-.tour__info h5 {
+.car__info h5 {
   margin-bottom: 1rem;
   font-size: 1.3rem;
 }
 
-.tour__info p {
+.car__info p {
   line-height: 30px;
   font-size: 1rem;
 }
@@ -54,7 +54,7 @@
   cursor: pointer;
 }
 
-.tour__reviews h4 {
+.car__reviews h4 {
   margin-bottom: 3rem;
 }
 .review__input {

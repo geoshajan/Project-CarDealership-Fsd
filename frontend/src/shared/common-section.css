@@ -1,6 +1,6 @@
 .common__section {
   background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-    url("../assets/images/tour.jpg") no-repeat center center;
+    url("../assets/images/car.jpg") no-repeat center center;
   height: 300px;
   background-size: cover;
   display: flex;

@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { BASE_URL } from "../../utils/config";
 
-const Booking = ({ tour, avgRating }) => {
-  const { price, reviews, title } = tour;
+const Booking = ({ car, avgRating }) => {
+  const { price, reviews, title } = car;
   const navigate = useNavigate();
 
   const { user } = useContext(AuthContext);
@@ -14,7 +14,7 @@ const Booking = ({ tour, avgRating }) => {
   const [booking, setBooking] = useState({
     userId: user && user._id,
     userEmail: user && user.email,
-    tourName: title,
+    carName: title,
     fullName: "",
     phone: "",
     guestSize: 1,
@@ -62,7 +62,7 @@ const Booking = ({ tour, avgRating }) => {
           ${price}
           <span>/per person</span>
         </h3>
-        <span className="tour__rating d-flex align-items-center">
+        <span className="car__rating d-flex align-items-center">
           <i class="ri-star-s-fill"></i>
           {avgRating == 0 ? null : avgRating} ({reviews?.length})
         </span>

@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import SearchBar from "../shared/SearchBar";
 import ServiceList from "../services/ServiceList";
-import FeaturedTourList from "../components/Featured-tours/FeaturedTourList";
+import FeaturedcarList from "../components/Featured-cars/FeaturedCarList";
 import MasonryImagesGallery from "../components/Image-gallery/MasonryImagesGallery";
 import Testimonials from "../components/Testimonial/Testimonials";
 import Newsletter from "../shared/Newsletter";
@@ -21,19 +21,19 @@ import experienceImg from '../assets/images/experience.png'
 const Home = () => {
   const items = [
     {
-      src: 'https://picsum.photos/id/123/1200/400',
+      src: 'https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/2020-Chevrolet-Corvette-Stingray/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&width=960',
       altText: 'Slide 1',
       caption: 'Slide 1',
       key: 1,
     },
     {
-      src: 'https://picsum.photos/id/456/1200/400',
+      src: 'https://thumbor.forbes.com/thumbor/fit-in/960x/filters:format(jpg)/https://www.forbes.com/wheels/wp-content/uploads/2020/12/Nissan-zproto-400z-960x540-1.png',
       altText: 'Slide 2',
       caption: 'Slide 2',
       key: 2,
     },
     {
-      src: 'https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/2020-Chevrolet-Corvette-Stingray/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&width=960',
+      src: 'https://www.kia.com/content/dam/kwcms/au/en/images/category/performance/media-banner-960x540.webp',
       altText: 'Slide 3',
       caption: 'Slide 3',
       key: 3,
@@ -61,46 +61,52 @@ const Home = () => {
       setActiveIndex(newIndex);
     };
 
-    const slides = items.map((item) => (
-      <CarouselItem
-        onExiting={() => setAnimating(true)}
-        onExited={() => setAnimating(false)}
-        key={item.src}
-      >
-        <img src={item.src} alt={item.altText} />
-        <CarouselCaption
-          captionText={item.caption}
-          captionHeader={item.caption}
-        />
-      </CarouselItem>
-    ));
+  const slides = items.map((item) => (
+    <CarouselItem
+      onExiting={() => setAnimating(true)}
+      onExited={() => setAnimating(false)}
+      key={item.src}
+    >
+      <img src={item.src} alt={item.altText} />
+      <CarouselCaption
+        captionText={item.caption}
+        captionHeader={item.caption}
+      />
+    </CarouselItem>
+  ));
 
-    return (
-      <Carousel
-        activeIndex={activeIndex}
-        next={next}
-        previous={previous}
-        {...args}
-      >
-        <CarouselIndicators
-          items={items}
-          activeIndex={activeIndex}
-          onClickHandler={goToIndex}
-        />
-        {slides}
-        <CarouselControl
-          direction="prev"
-          directionText="Previous"
-          onClickHandler={previous}
-        />
-        <CarouselControl
-          direction="next"
-          directionText="Next"
-          onClickHandler={next}
-        />
-      </Carousel>
-    );
-  };
+  return (
+    <Container className="carousel-container">
+      <Row>
+        <Col lg="12" className="d-flex justify-content-center">
+          <Carousel
+            activeIndex={activeIndex}
+            next={next}
+            previous={previous}
+            {...args}
+          >
+            <CarouselIndicators
+              items={items}
+              activeIndex={activeIndex}
+              onClickHandler={goToIndex}
+            />
+            {slides}
+            <CarouselControl
+              direction="prev"
+              directionText="Previous"
+              onClickHandler={previous}
+            />
+            <CarouselControl
+              direction="next"
+              directionText="Next"
+              onClickHandler={next}
+            />
+          </Carousel>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
   return (
     <>
@@ -108,7 +114,13 @@ const Home = () => {
       <Example />
 
       {/* SearchBar Section */}
-      <SearchBar />
+      <div className="search-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                      <SearchBar />
+      </div>
+
+
+        {/* <SearchBar /> */}
+
 
       {/* Rest of your component code */}
       <section>
@@ -123,19 +135,19 @@ const Home = () => {
         </Container>
       </section>
 
-      {/*=========featured tour section start==========*/}
+      {/*=========featured car section start==========*/}
       <section>
         <Container>
           <Row>
             <Col lg="12" className="mb-5">
               <Subtitle subtitle={"Explore"} />
-              <h2 className="featured__tour-title">Our featured tours</h2>
+              <h2 className="featured__car-title">Our featured cars</h2>
             </Col>
-            <FeaturedTourList />
+            <FeaturedcarList />
           </Row>
         </Container>
       </section>
-      {/*=========featured tour section end==========*/}
+      {/*=========featured car section end==========*/}
       {/*=========experience section start===========*/}
 
       <section>
@@ -182,7 +194,7 @@ const Home = () => {
             <Col lg="12">
               <Subtitle subtitle={"Gallery"} />
               <h2 className="gallery__title">
-                Visit our customers tour gallery
+                Visit our customers car gallery
               </h2>
             </Col>
             <Col lg="12">

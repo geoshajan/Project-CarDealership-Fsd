@@ -1,40 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, CardBody } from "reactstrap";
-import "./tour-card.css";
+import "./car-card.css";
 import calculateAvgRating from "../utils/avgRatings";
 
-const TourCard = ({ tour }) => {
-  const { _id, title, city, photo, price, featured, reviews } = tour;
+const CarCard = ({ car }) => {
+  const { _id, title, city, photo, price, featured, reviews } = car;
 
   const { totalRating, avgRating } = calculateAvgRating(reviews);
 
   return (
-    <div className="tour__card">
+    <div className="car__card">
       <Card>
-        <div className="tour__img">
-          <img src={photo} alt="tour-img" />
+        <div className="car__img">
+          <img src={photo} alt="car-img" />
           {featured && <span>Featured</span>}
         </div>
         <CardBody>
           <div className="card__top d-flex align-items-center justify-content-between">
-            <span className="tour__location d-flex align-items-center gap-1">
+            <span className="car__location d-flex align-items-center gap-1">
               <i class="ri-map-pin-line"></i> {city}
             </span>
-            <span className="tour__rating d-flex align-items-center gap-1">
+            <span className="car__rating d-flex align-items-center gap-1">
               <i class="ri-star-fill"></i> {avgRating == 0 ? null : avgRating}
               {totalRating == 0 ? "Not Rated" : <span>({reviews.length})</span>}
             </span>
           </div>
-          <h5 className="tour__title">
-            <Link to={`/tours/${_id}`}>{title}</Link>
+          <h5 className="car__title">
+            <Link to={`/cars/${_id}`}>{title}</Link>
           </h5>
           <div className="card__bottom d-flex align-items-center justify-content-between mt-3">
             <h5>
               ${price} <span>/per person</span>
             </h5>
             <button className="btn booking__btn">
-              <Link to={`/tours/${_id}`}>Book Now</Link>
+              <Link to={`/cars/${_id}`}>Book Now</Link>
             </button>
           </div>
         </CardBody>
@@ -43,4 +43,4 @@ const TourCard = ({ tour }) => {
   );
 };
 
-export default TourCard;
+export default CarCard;

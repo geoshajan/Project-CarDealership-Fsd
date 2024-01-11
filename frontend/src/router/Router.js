@@ -3,8 +3,8 @@ import { Routes, Route } from "react-router-dom";
 
 import Home from "./../pages/Home";
 
-import Tours from "../pages/Tours";
-import TourDetails from "../pages/TourDetails";
+import cars from "../pages/Cars";
+import carDetails from "../pages/CarDetails";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ThankYou from "../pages/ThankYou";
@@ -15,12 +15,12 @@ const Router = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/home" element={<Home />} />
-      <Route path="/tours" element={<Tours />} />
-      <Route path="/tours/:id" element={<TourDetails />} />
+      <Route path="/cars" element={<cars />} />
+      <Route path="/cars/:id" element={<carDetails />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/thank-you" element={<ThankYou />} />
-      <Route path="/tour/search" element={<SearchResultList />} />
+      <Route path="/car/search" element={<SearchResultList />} />
     </Routes>
   );
 };

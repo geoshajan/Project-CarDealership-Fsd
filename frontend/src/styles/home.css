@@ -50,7 +50,7 @@
   font-weight: 500;
 }
 
-.featured__tour-title {
+.featured__car-title {
   font-size: 2.3rem;
   font-weight: 500;
 }
@@ -108,3 +108,14 @@
   font-size: 2.3rem;
   margin-top: 1rem;
 }
+
+.carousel-container {
+  max-width: 800px; /* Set your desired maximum width */
+  margin: auto; /* Center the container */
+}
+
+/* Adjust the width and styles of the carousel items if needed */
+.carousel-item img {
+  max-width: 100%; /* Ensure images don't exceed the container width */
+}
+

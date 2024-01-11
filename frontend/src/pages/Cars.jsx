@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from "react";
 import CommonSection from "../shared/CommonSection";
-import "../styles/tour.css";
-import Newsletter from "./../shared/Newsletter";
-import TourCard from "./../shared/TourCard";
-import SearchBar from "./../shared/SearchBar";
+import "../styles/car.css";
+import Newsletter from "../shared/Newsletter";
+import carCard from "./../shared/CarCard";
+import SearchBar from "../shared/SearchBar";
 import { Col, Container, Row } from "reactstrap";
 
 import useFetch from "../hooks/useFetch";
 import { BASE_URL } from "../utils/config";
 
-const Tours = () => {
+const Cars = () => {
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(0);
 
   const {
-    data: tours,
+    data: cars,
     loading,
     error,
-  } = useFetch(`${BASE_URL}/tours?page=${page}`);
-  const { data: tourCount } = useFetch(`${BASE_URL}/tours/search/getTourCount`);
+  } = useFetch(`${BASE_URL}/cars?page=${page}`);
+  const { data: carCount } = useFetch(`${BASE_URL}/cars/search/getcarCount`);
 
   useEffect(() => {
-    const pages = Math.ceil(tourCount / 8);
+    const pages = Math.ceil(carCount / 8);
     setPageCount(pages);
     window.scrollTo(0, 0);
-  }, [page, tourCount, tours]);
+  }, [page, carCount, cars]);
 
   return (
     <>
-      <CommonSection title={"All Tours"} />
+      <CommonSection title={"All cars"} />
       <section>
         <Container>
           <Row>
@@ -42,9 +42,9 @@ const Tours = () => {
           {error && <h4 className="text-center pt-5">{error}</h4>}
           {!loading && !error && (
             <Row>
-              {tours?.map((tour) => (
-                <Col lg="3" className="mb-4" key={tour._id}>
-                  <TourCard tour={tour} />
+              {cars?.map((car) => (
+                <Col lg="3" className="mb-4" key={car._id}>
+                  <carCard car={car} />
                 </Col>
               ))}
 
@@ -73,4 +73,4 @@ const Tours = () => {
   );
 };
 
-export default Tours;
+export default Cars;

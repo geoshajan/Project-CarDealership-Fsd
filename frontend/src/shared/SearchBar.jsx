@@ -20,20 +20,20 @@ const SearchBar = () => {
     }
 
     const res = await fetch(
-      `${BASE_URL}/tours/search/getTourBySearch?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`
+      `${BASE_URL}/cars/search/getcarBySearch?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`
     );
     if (!res.ok) alert("Something went wrong");
 
     const result = await res.json();
 
     navigate(
-      `/tour/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`,
+      `/car/search?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`,
       { state: result.data }
     );
   };
 
   return (
-    <Col lg="12">
+    <Col lg="12" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <div className="search_bar">
         <Form className="d-flex align-items-center gap-4">
           <FormGroup className="d-flex gap-3 form__group form__group-fast">

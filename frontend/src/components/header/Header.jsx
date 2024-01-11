@@ -21,9 +21,9 @@ const nav__links = [
   },
 
   {
-    path: "/tours",
+    path: "/cars",
 
-    display: "Tours",
+    display: "cars",
   },
 ];
 
