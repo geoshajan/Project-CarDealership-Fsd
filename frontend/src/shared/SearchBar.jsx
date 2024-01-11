@@ -36,15 +36,15 @@ const SearchBar = () => {
     <Col lg="12" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <div className="search_bar">
         <Form className="d-flex align-items-center gap-4">
-          <FormGroup className="d-flex gap-3 form__group form__group-fast">
+        <FormGroup className="d-flex gap-3 form__group form__group-fast">
             <span>
               <i class="ri-map-pin-line"></i>
             </span>
             <div>
-              <h6>Location</h6>
+              <h6>Find your car</h6>
               <input
                 type="text"
-                placeholder="Where are you going?"
+                placeholder="Car name"
                 ref={locationRef}
               />
             </div>
@@ -54,10 +54,10 @@ const SearchBar = () => {
               <i class="ri-map-pin-time-line"></i>
             </span>
             <div>
-              <h6>Distance</h6>
+              <h6>Transmission</h6>
               <input
-                type="number"
-                placeholder="Distance k/m"
+                type="text"
+                placeholder="AT/MN"
                 ref={distanceRef}
               />
             </div>
@@ -67,8 +67,23 @@ const SearchBar = () => {
               <i class="ri-group-line"></i>
             </span>
             <div>
-              <h6>Max people</h6>
-              <input type="number" placeholder="0" ref={maxGroupSizeRef} />
+              <h6>Fuel Type</h6>
+              <input type="Text" 
+              placeholder="Petrol/Diesel" 
+              ref={maxGroupSizeRef} />
+            </div>
+          </FormGroup>
+          <FormGroup className="d-flex gap-3 form__group form__group-fast">
+            <span>
+              <i class="ri-map-pin-line"></i>
+            </span>
+            <div>
+              <h6>Location</h6>
+              <input
+                type="text"
+                placeholder="Find nearby dealers"
+                ref={locationRef}
+              />
             </div>
           </FormGroup>
           <span className="search__icon" type="submit" onClick={searchHandler}>
@@ -81,3 +96,4 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+

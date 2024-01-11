@@ -9,22 +9,15 @@ import tourImg07 from "../images/tour-img07.jpg";
 const tours = [
   {
     id: "01",
-    title: "Westminister Bridge",
-    city: "London",
-    distance: 300,
-    address: "Somewhere",
-    price: 99,
-    maxGroupSize: 10,
-    desc: "this is the description",
-    reviews: [
-      {
-        name: "jhon doe",
-        rating: 4.6,
-      },
-    ],
-    avgRating: 4.5,
-    photo: tourImg01,
-    featured: true,
+    title : "Toyota corolla",
+    transmission:"manual",
+    fuel:"petrol",
+    colour:"Black",
+    photo:"/car-images/car-img01.jpg",
+    desc:"The all new Toyota Corolla is here",
+    price:2000000,
+    featured:true,
+    reviews: []
   },
   {
     id: "02",

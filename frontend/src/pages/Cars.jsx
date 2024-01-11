@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CommonSection from "../shared/CommonSection";
 import "../styles/car.css";
 import Newsletter from "../shared/Newsletter";
-import carCard from "./../shared/CarCard";
+import CarCard from "../shared/CarCard";
 import SearchBar from "../shared/SearchBar";
 import { Col, Container, Row } from "reactstrap";
 
@@ -44,7 +44,7 @@ const Cars = () => {
             <Row>
               {cars?.map((car) => (
                 <Col lg="3" className="mb-4" key={car._id}>
-                  <carCard car={car} />
+                  <CarCard car={car} />
                 </Col>
               ))}
 

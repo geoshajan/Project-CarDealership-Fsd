@@ -1,33 +1,33 @@
 import express from "express";
 import {
-  createcar,
-  deletecar,
-  getAllcar,
-  getFeaturedcar,
-  getSinglecar,
-  getcarBySearch,
-  getcarCount,
-  updatecar,
+  createCar,
+  deleteCar,
+  getAllCar,
+  getFeaturedCar,
+  getSingleCar,
+  getCarBySearch,
+  getCarCount,
+  updateCar,
 } from "./../controllers/carController.js";
 
 import { verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
-router.post("/", verifyAdmin, createcar);
+router.post("/", verifyAdmin, createCar);
 
-router.put("/:id", verifyAdmin, updatecar);
+router.put("/:id", verifyAdmin, updateCar);
 
-router.delete("/:id", verifyAdmin, deletecar);
+router.delete("/:id", verifyAdmin, deleteCar);
 
-router.get("/:id", getSinglecar);
+router.get("/:id", getSingleCar);
 
-router.get("/", getAllcar);
+router.get("/", getAllCar);
 
-router.get("/search/getcarBySearch", getcarBySearch);
+router.get("/search/getCarBySearch", getCarBySearch);
 
-router.get("/search/getFeaturedcars", getFeaturedcar);
+router.get("/search/getFeaturedCars", getFeaturedCar);
 
-router.get("/search/getcarCount", getcarCount);
+router.get("/search/getCarCount", getCarCount);
 
 export default router;

@@ -1,0 +1,112 @@
+[
+  {
+    "title" : "Toyota corolla",
+    "transmission":"manual",
+    "fuel":"petrol",
+    "colour":"Black",
+    "photo":"/car-images/car-img01.jpg",
+    "desc":"The all new Toyota Corolla is here",
+    "price":2000000,
+    "featured":true,
+    "reviews": []
+  },
+  {
+    "title" : "Porsche panamera",
+    "transmission":"manual",
+    "fuel":"petrol",
+    "colour":"Black",
+    "photo":"/car-images/car-img02.jpg",
+    "desc":"The all new Toyota Corolla is here",
+    "price":2000000,
+    "featured":true,
+    "reviews": []
+  },
+  {
+    "title" : "Toyota corolla",
+    "transmission":"manual",
+    "fuel":"petrol",
+    "colour":"Black",
+    "photo":"/car-images/car-img01.jpg",
+    "desc":"The all new Toyota Corolla is here",
+    "price":2000000,
+    "featured":true,
+    "reviews": []
+  },
+  {
+    "title" : "Toyota corolla",
+    "transmission":"manual",
+    "fuel":"petrol",
+    "colour":"Black",
+    "photo":"/car-images/car-img01.jpg",
+    "desc":"The all new Toyota Corolla is here",
+    "price":2000000,
+    "featured":true,
+    "reviews": []
+  },
+  {
+    "title" : "Toyota corolla",
+    "transmission":"manual",
+    "fuel":"petrol",
+    "colour":"Black",
+    "photo":"/car-images/car-img01.jpg",
+    "desc":"The all new Toyota Corolla is here",
+    "price":2000000,
+    "featured":true,
+    "reviews": []
+  },
+  {
+    "title" : "Toyota corolla",
+    "transmission":"manual",
+    "fuel":"petrol",
+    "colour":"Black",
+    "photo":"/car-images/car-img01.jpg",
+    "desc":"The all new Toyota Corolla is here",
+    "price":2000000,
+    "featured":true,
+    "reviews": []
+  },
+  {
+    "title" : "Toyota corolla",
+    "transmission":"manual",
+    "fuel":"petrol",
+    "colour":"Black",
+    "photo":"/car-images/car-img01.jpg",
+    "desc":"The all new Toyota Corolla is here",
+    "price":2000000,
+    "featured":true,
+    "reviews": []
+  },
+  {
+    "title" : "Toyota corolla",
+    "transmission":"manual",
+    "fuel":"petrol",
+    "colour":"Black",
+    "photo":"/car-images/car-img01.jpg",
+    "desc":"The all new Toyota Corolla is here",
+    "price":2000000,
+    "featured":true,
+    "reviews": []
+  },
+  {
+    "title" : "Toyota corolla",
+    "transmission":"manual",
+    "fuel":"petrol",
+    "colour":"Black",
+    "photo":"/car-images/car-img01.jpg",
+    "desc":"The all new Toyota Corolla is here",
+    "price":2000000,
+    "featured":true,
+    "reviews": []
+  },
+  {
+    "title" : "Toyota corolla",
+    "transmission":"manual",
+    "fuel":"petrol",
+    "colour":"Black",
+    "photo":"/car-images/car-img01.jpg",
+    "desc":"The all new Toyota Corolla is here",
+    "price":2000000,
+    "featured":true,
+    "reviews": []
+  }
+]

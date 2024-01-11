@@ -1,15 +1,14 @@
-import car from "../models/car.js";
-
-export const createcar = async (req, res) => {
-  const newcar = new car(req.body);
+import Car from "../models/Car";
+export const createCar = async (req, res) => {
+  const newCar = new Car(req.body);
 
   try {
-    const savedcar = await newcar.save();
+    const savedCar = await newCar.save();
 
     res.status(200).json({
       success: true,
       message: "Successfully created",
-      data: savedcar,
+      data: savedCar,
     });
   } catch (err) {
     res
@@ -18,11 +17,11 @@ export const createcar = async (req, res) => {
   }
 };
 
-export const updatecar = async (req, res) => {
+export const updateCar = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const updatedcar = await car.findByIdAndUpdate(
+    const updatedCar = await Car.findByIdAndUpdate(
       id,
       {
         $set: req.body,
@@ -33,7 +32,7 @@ export const updatecar = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Successfully updated",
-      data: updatedcar,
+      data: updatedCar,
     });
   } catch (err) {
     res.status(500).json({
@@ -43,11 +42,11 @@ export const updatecar = async (req, res) => {
   }
 };
 
-export const deletecar = async (req, res) => {
+export const deleteCar = async (req, res) => {
   const id = req.params.id;
 
   try {
-    await car.findByIdAndDelete(id);
+    await Car.findByIdAndDelete(id);
 
     res.status(200).json({
       success: true,
@@ -61,11 +60,11 @@ export const deletecar = async (req, res) => {
   }
 };
 
-export const getSinglecar = async (req, res) => {
+export const getSingleCar = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const car = await car.findById(id).populate("reviews");
+    const car = await Car.findById(id).populate("reviews");
 
     res.status(200).json({
       success: true,
@@ -80,11 +79,11 @@ export const getSinglecar = async (req, res) => {
   }
 };
 
-export const getAllcar = async (req, res) => {
+export const getAllCar = async (req, res) => {
   const page = parseInt(req.query.page);
 
   try {
-    const cars = await car.find({})
+    const cars = await Car.find({})
       .populate("reviews")
       .skip(page * 8)
       .limit(8);
@@ -103,13 +102,13 @@ export const getAllcar = async (req, res) => {
   }
 };
 
-export const getcarBySearch = async (req, res) => {
+export const getCarBySearch = async (req, res) => {
   const city = new RegExp(req.query.city, "i");
   const distance = parseInt(req.query.distance);
   const maxGroupSize = parseInt(req.query.maxGroupSize);
 
   try {
-    const cars = await car.find({
+    const cars = await Car.find({
       city,
       distance: { $gte: distance },
       maxGroupSize: { $gte: maxGroupSize },
@@ -129,11 +128,12 @@ export const getcarBySearch = async (req, res) => {
   }
 };
 
-export const getFeaturedcar = async (req, res) => {
+export const getFeaturedCar = async (req, res) => {
   const page = parseInt(req.query.page);
 
+
   try {
-    const cars = await car.find({ featured: true })
+    const cars = await Car.find({ featured: true })
       .populate("reviews")
       .limit(8);
 
@@ -151,9 +151,9 @@ export const getFeaturedcar = async (req, res) => {
   }
 };
 
-export const getcarCount = async (req, res) => {
+export const getCarCount = async (req, res) => {
   try {
-    const carCount = await car.estimatedDocumentCount();
+    const carCount = await Car.estimatedDocumentCount();
 
     res.status(200).json({ success: true, data: carCount });
   } catch (err) {
