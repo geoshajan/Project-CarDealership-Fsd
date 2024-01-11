@@ -1,13 +1,13 @@
-import Tour from "../models/Tour.js";
+import car from "../models/car.js";
 import Review from "../models/Review.js";
 
 export const createReview = async (req, res) => {
-  const tourId = req.params.tourId;
+  const carId = req.params.carId;
   const newReview = new Review({ ...req.body });
   try {
     const savedReview = await newReview.save();
 
-    await Tour.findByIdAndUpdate(tourId, {
+    await car.findByIdAndUpdate(carId, {
       $push: { reviews: savedReview._id },
     });
 

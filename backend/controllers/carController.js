@@ -1,15 +1,15 @@
-import Tour from "../models/Tour.js";
+import car from "../models/car.js";
 
-export const createTour = async (req, res) => {
-  const newTour = new Tour(req.body);
+export const createcar = async (req, res) => {
+  const newcar = new car(req.body);
 
   try {
-    const savedTour = await newTour.save();
+    const savedcar = await newcar.save();
 
     res.status(200).json({
       success: true,
       message: "Successfully created",
-      data: savedTour,
+      data: savedcar,
     });
   } catch (err) {
     res
@@ -18,11 +18,11 @@ export const createTour = async (req, res) => {
   }
 };
 
-export const updateTour = async (req, res) => {
+export const updatecar = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const updatedTour = await Tour.findByIdAndUpdate(
+    const updatedcar = await car.findByIdAndUpdate(
       id,
       {
         $set: req.body,
@@ -33,7 +33,7 @@ export const updateTour = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Successfully updated",
-      data: updatedTour,
+      data: updatedcar,
     });
   } catch (err) {
     res.status(500).json({
@@ -43,11 +43,11 @@ export const updateTour = async (req, res) => {
   }
 };
 
-export const deleteTour = async (req, res) => {
+export const deletecar = async (req, res) => {
   const id = req.params.id;
 
   try {
-    await Tour.findByIdAndDelete(id);
+    await car.findByIdAndDelete(id);
 
     res.status(200).json({
       success: true,
@@ -61,16 +61,16 @@ export const deleteTour = async (req, res) => {
   }
 };
 
-export const getSingleTour = async (req, res) => {
+export const getSinglecar = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const tour = await Tour.findById(id).populate("reviews");
+    const car = await car.findById(id).populate("reviews");
 
     res.status(200).json({
       success: true,
       message: "Successfull",
-      data: tour,
+      data: car,
     });
   } catch (err) {
     res.status(404).json({
@@ -80,20 +80,20 @@ export const getSingleTour = async (req, res) => {
   }
 };
 
-export const getAllTour = async (req, res) => {
+export const getAllcar = async (req, res) => {
   const page = parseInt(req.query.page);
 
   try {
-    const tours = await Tour.find({})
+    const cars = await car.find({})
       .populate("reviews")
       .skip(page * 8)
       .limit(8);
 
     res.status(200).json({
       success: true,
-      count: tours.length,
+      count: cars.length,
       message: "Successful",
-      data: tours,
+      data: cars,
     });
   } catch (err) {
     res.status(404).json({
@@ -103,13 +103,13 @@ export const getAllTour = async (req, res) => {
   }
 };
 
-export const getTourBySearch = async (req, res) => {
+export const getcarBySearch = async (req, res) => {
   const city = new RegExp(req.query.city, "i");
   const distance = parseInt(req.query.distance);
   const maxGroupSize = parseInt(req.query.maxGroupSize);
 
   try {
-    const tours = await Tour.find({
+    const cars = await car.find({
       city,
       distance: { $gte: distance },
       maxGroupSize: { $gte: maxGroupSize },
@@ -117,9 +117,9 @@ export const getTourBySearch = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      count: tours.length,
+      count: cars.length,
       message: "Successful",
-      data: tours,
+      data: cars,
     });
   } catch (err) {
     res.status(404).json({
@@ -129,11 +129,11 @@ export const getTourBySearch = async (req, res) => {
   }
 };
 
-export const getFeaturedTour = async (req, res) => {
+export const getFeaturedcar = async (req, res) => {
   const page = parseInt(req.query.page);
 
   try {
-    const tours = await Tour.find({ featured: true })
+    const cars = await car.find({ featured: true })
       .populate("reviews")
       .limit(8);
 
@@ -141,7 +141,7 @@ export const getFeaturedTour = async (req, res) => {
       success: true,
 
       message: "Successful",
-      data: tours,
+      data: cars,
     });
   } catch (err) {
     res.status(404).json({
@@ -151,11 +151,11 @@ export const getFeaturedTour = async (req, res) => {
   }
 };
 
-export const getTourCount = async (req, res) => {
+export const getcarCount = async (req, res) => {
   try {
-    const tourCount = await Tour.estimatedDocumentCount();
+    const carCount = await car.estimatedDocumentCount();
 
-    res.status(200).json({ success: true, data: tourCount });
+    res.status(200).json({ success: true, data: carCount });
   } catch (err) {
     res.status(500).json({ success: false, message: "failed to fetch" });
   }

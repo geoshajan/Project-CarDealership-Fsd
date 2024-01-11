@@ -1,59 +1,116 @@
-import React from "react";
-import "../styles/home.css";
-import { Container, Row, Col } from "reactstrap";
-import heroImg from "../assets/images/hero-img01.jpg";
-import heroImg02 from "../assets/images/hero-img02.jpg";
-import heroVideo from "../assets/images/hero-video.mp4";
-import worldImg from "../assets/images/world.png";
-import experienceImg from "../assets/images/experience.png";
-
-import Subtitle from "../shared/Subtitle";
+import React, { useState } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Carousel,
+  CarouselItem,
+  CarouselCaption,
+  CarouselControl,
+  CarouselIndicators
+} from "reactstrap";
 import SearchBar from "../shared/SearchBar";
 import ServiceList from "../services/ServiceList";
 import FeaturedTourList from "../components/Featured-tours/FeaturedTourList";
 import MasonryImagesGallery from "../components/Image-gallery/MasonryImagesGallery";
 import Testimonials from "../components/Testimonial/Testimonials";
 import Newsletter from "../shared/Newsletter";
+import Subtitle from '../shared/Subtitle';
+import experienceImg from '../assets/images/experience.png'
 
 const Home = () => {
+  const items = [
+    {
+      src: 'https://picsum.photos/id/123/1200/400',
+      altText: 'Slide 1',
+      caption: 'Slide 1',
+      key: 1,
+    },
+    {
+      src: 'https://picsum.photos/id/456/1200/400',
+      altText: 'Slide 2',
+      caption: 'Slide 2',
+      key: 2,
+    },
+    {
+      src: 'https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/2020-Chevrolet-Corvette-Stingray/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&width=960',
+      altText: 'Slide 3',
+      caption: 'Slide 3',
+      key: 3,
+    },
+  ];
+
+  const Example = (args) => {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [animating, setAnimating] = useState(false);
+
+    const next = () => {
+      if (animating) return;
+      const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+      setActiveIndex(nextIndex);
+    };
+
+    const previous = () => {
+      if (animating) return;
+      const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+      setActiveIndex(nextIndex);
+    };
+
+    const goToIndex = (newIndex) => {
+      if (animating) return;
+      setActiveIndex(newIndex);
+    };
+
+    const slides = items.map((item) => (
+      <CarouselItem
+        onExiting={() => setAnimating(true)}
+        onExited={() => setAnimating(false)}
+        key={item.src}
+      >
+        <img src={item.src} alt={item.altText} />
+        <CarouselCaption
+          captionText={item.caption}
+          captionHeader={item.caption}
+        />
+      </CarouselItem>
+    ));
+
+    return (
+      <Carousel
+        activeIndex={activeIndex}
+        next={next}
+        previous={previous}
+        {...args}
+      >
+        <CarouselIndicators
+          items={items}
+          activeIndex={activeIndex}
+          onClickHandler={goToIndex}
+        />
+        {slides}
+        <CarouselControl
+          direction="prev"
+          directionText="Previous"
+          onClickHandler={previous}
+        />
+        <CarouselControl
+          direction="next"
+          directionText="Next"
+          onClickHandler={next}
+        />
+      </Carousel>
+    );
+  };
+
   return (
     <>
-      {/*============hero section start===========*/}
-      <section>
-        <Container>
-          <Row>
-            <Col lg="6">
-              <div className="hero__content">
-                <div className="hero__subtitle d-flex align-items-center">
-                  <Subtitle subtitle={"Know before you go"} />
-                  <img src={worldImg} alt="" />
-                </div>
-                <h1>
-                  Travelling opens the door to creating{" "}
-                  <span className="highlight">memories</span>
-                </h1>
-                <p>anything here</p>
-              </div>
-            </Col>
-            <Col lg="2">
-              <div className="hero__img-box">
-                <img src={heroImg} alt="" />
-              </div>
-            </Col>
-            <Col lg="2">
-              <div className="hero__img-box mt-4">
-                <video src={heroVideo} alt="" controls />
-              </div>
-            </Col>
-            <Col lg="2">
-              <div className="hero__img-box mt-5">
-                <img src={heroImg02} alt="" />
-              </div>
-            </Col>
-            <SearchBar />
-          </Row>
-        </Container>
-      </section>
+     {/* Carousel Section */}
+      <Example />
+
+      {/* SearchBar Section */}
+      <SearchBar />
+
+      {/* Rest of your component code */}
       <section>
         <Container>
           <Row>
