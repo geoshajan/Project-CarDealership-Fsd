@@ -23,7 +23,7 @@ const nav__links = [
   {
     path: "/cars",
 
-    display: "cars",
+    display: "Cars",
   },
 ];
 
