@@ -7,15 +7,15 @@ const carSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    city: {
+    transmission: {
       type: String,
       required: true,
     },
-    address: {
+    fuel: {
       type: String,
       required: true,
     },
-    distance: {
+    colour: {
       type: Number,
       required: true,
     },
@@ -28,10 +28,6 @@ const carSchema = new mongoose.Schema(
       required: true,
     },
     price: {
-      type: Number,
-      required: true,
-    },
-    maxGroupSize: {
       type: Number,
       required: true,
     },
