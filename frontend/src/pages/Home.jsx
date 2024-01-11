@@ -165,7 +165,7 @@ const Home = () => {
               <div className="counter__wrapper d-flex align-items-center gap-5">
                 <div className="counter__box">
                   <span>12k+</span>
-                  <h6>Successfull trips</h6>
+                  <h6>Successfull sales</h6>
                 </div>
                 <div className="counter__box">
                   <span>2k+</span>
@@ -179,7 +179,7 @@ const Home = () => {
             </Col>
             <Col lg="6">
               <div className="experience__img">
-                <img src={experienceImg} alt="" />
+                <img src="https://img.freepik.com/free-photo/portrait-successful-young-happy-man-showing-keys-sitting-new-car_186202-3895.jpg?size=626&ext=jpg&uid=R133885418&ga=GA1.2.2038340209.1704984276&semt=ais" alt="" />
               </div>
             </Col>
           </Row>
