@@ -1,6 +1,7 @@
 .login__img {
-  width: 60%;
+  width: 80%;
   text-align: center;
+  padding-top: 60px;
 }
 
 .login__img img {
@@ -73,4 +74,8 @@
   text-decoration: none;
   margin-left: 5px;
   font-weight: 500;
+}
+.Create_btn{
+  color: #fff !important;
+  padding-top: 100px;
 }

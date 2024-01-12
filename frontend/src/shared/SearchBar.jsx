@@ -38,7 +38,7 @@ const SearchBar = () => {
         <Form className="d-flex align-items-center gap-4">
         <FormGroup className="d-flex gap-3 form__group form__group-fast">
             <span>
-              <i class="ri-map-pin-line"></i>
+            <i class="ri-car-fill"></i>
             </span>
             <div>
               <h6>Find your car</h6>
@@ -64,7 +64,7 @@ const SearchBar = () => {
           </FormGroup>
           <FormGroup className="d-flex gap-3 form__group form__group-last">
             <span>
-              <i class="ri-group-line"></i>
+              <i class="ri-water-flash-line"></i>
             </span>
             <div>
               <h6>Fuel Type</h6>

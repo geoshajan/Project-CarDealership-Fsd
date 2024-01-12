@@ -32,17 +32,16 @@ const carSchema = new mongoose.Schema(
       required: true,
     },
 
+    featured: {
+      type: Boolean,
+      default: false,
+    },
     reviews: [
       {
         type: mongoose.Types.ObjectId,
         ref: "Review",
       },
     ],
-
-    featured: {
-      type: Boolean,
-      default: false,
-    },
   },
   { timestamps: true }
 );

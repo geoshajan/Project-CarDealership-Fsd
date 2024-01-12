@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 import CommonSection from "../shared/CommonSection";
 import { Col, Container, Row } from "reactstrap";
 import carCard from "../shared/CarCard";
-import Newsletter from "../shared/Newsletter";
 
 const SearchResultList = () => {
   const location = useLocation();
@@ -28,7 +27,6 @@ const SearchResultList = () => {
           </Row>
         </Container>
       </section>
-      <Newsletter />
     </>
   );
 };

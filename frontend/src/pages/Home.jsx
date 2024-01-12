@@ -14,9 +14,7 @@ import ServiceList from "../services/ServiceList";
 import FeaturedcarList from "../components/Featured-cars/FeaturedCarList";
 import MasonryImagesGallery from "../components/Image-gallery/MasonryImagesGallery";
 import Testimonials from "../components/Testimonial/Testimonials";
-import Newsletter from "../shared/Newsletter";
 import Subtitle from '../shared/Subtitle';
-import experienceImg from '../assets/images/experience.png'
 
 const Home = () => {
   const items = [
@@ -222,7 +220,7 @@ const Home = () => {
       </section>
 
       {/*=========testimonial section end===========*/}
-      <Newsletter />
+    
     </>
   );
 };

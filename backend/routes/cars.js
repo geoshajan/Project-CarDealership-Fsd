@@ -14,15 +14,15 @@ import { verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
-router.post("/", verifyAdmin, createCar);
+router.post("/",verifyAdmin, createCar);
 
 router.put("/:id", verifyAdmin, updateCar);
 
 router.delete("/:id", verifyAdmin, deleteCar);
 
-router.get("/:id", getSingleCar);
+router.get("/:id",verifyAdmin, getSingleCar);
 
-router.get("/", getAllCar);
+router.get("/", verifyAdmin, getAllCar);
 
 router.get("/search/getCarBySearch", getCarBySearch);
 

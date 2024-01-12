@@ -1,4 +1,6 @@
-import Car from "../models/Car";
+import Car from "../models/Car.js";
+
+
 export const createCar = async (req, res) => {
   const newCar = new Car(req.body);
 

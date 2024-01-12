@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CommonSection from "../shared/CommonSection";
 import "../styles/car.css";
-import Newsletter from "../shared/Newsletter";
 import CarCard from "../shared/CarCard";
 import SearchBar from "../shared/SearchBar";
 import { Col, Container, Row } from "reactstrap";
@@ -68,7 +67,7 @@ const Cars = () => {
           )}
         </Container>
       </section>
-      <Newsletter />
+      
     </>
   );
 };

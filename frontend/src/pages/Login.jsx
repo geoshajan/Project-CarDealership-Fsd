@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import "../styles/login.css";
-
 import loginImg from "../assets/images/login.png";
 import userIcon from "../assets/images/user.png";
 import { Button, Col, Container, Form, FormGroup, Row } from "reactstrap";
@@ -88,7 +87,7 @@ const Login = () => {
                     </Button>
                   </Form>
                   <p>
-                    Don't have an account? <Link to="/register">Create</Link>
+                    Don't have an account? <Link to="/register" className="Create_btn" > <u>Create</u></Link>
                   </p>
                 </div>
               </div>
