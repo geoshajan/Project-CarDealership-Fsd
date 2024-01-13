@@ -16,7 +16,7 @@ const carSchema = new mongoose.Schema(
       required: true,
     },
     colour: {
-      type: Number,
+      type: String,
       required: true,
     },
     photo: {
