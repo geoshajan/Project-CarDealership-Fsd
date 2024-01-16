@@ -27,7 +27,7 @@ const Cars = () => {
 
   return (
     <>
-      <CommonSection title={"All cars"} />
+      <CommonSection title={"All Cars"} />
       <section>
         <Container>
           <Row>

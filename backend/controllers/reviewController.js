@@ -1,4 +1,4 @@
-import car from "../models/Car.js";
+import Car from "../models/Car.js";
 import Review from "../models/Review.js";
 
 export const createReview = async (req, res) => {
@@ -7,7 +7,7 @@ export const createReview = async (req, res) => {
   try {
     const savedReview = await newReview.save();
 
-    await car.findByIdAndUpdate(carId, {
+    await Car.findByIdAndUpdate(carId, {
       $push: { reviews: savedReview._id },
     });
 

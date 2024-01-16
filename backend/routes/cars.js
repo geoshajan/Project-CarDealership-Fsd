@@ -16,13 +16,13 @@ const router = express.Router();
 
 router.post("/", createCar);
 
-router.put("/:id", verifyAdmin, updateCar);
+router.put("/:id", updateCar);
 
-router.delete("/:id", verifyAdmin, deleteCar);
+router.delete("/:id", deleteCar);
 
-router.get("/:id",verifyAdmin, getSingleCar);
+router.get("/:id", getSingleCar);
 
-router.get("/", verifyAdmin, getAllCar);
+router.get("/", getAllCar);
 
 router.get("/search/getCarBySearch", getCarBySearch);
 

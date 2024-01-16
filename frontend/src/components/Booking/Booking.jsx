@@ -25,7 +25,7 @@ const Booking = ({ car, avgRating }) => {
     setBooking((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const serviceFee = 10;
+  const serviceFee = 100000;
   const totalAmount =
     Number(price) * Number(booking.guestSize) + Number(serviceFee);
 
@@ -59,8 +59,7 @@ const Booking = ({ car, avgRating }) => {
     <div className="booking">
       <div className="booking__top d-flex align-items-center justify-content-between">
         <h3>
-          ${price}
-          <span>/per person</span>
+        Rs :{price}
         </h3>
         <span className="car__rating d-flex align-items-center">
           <i class="ri-star-s-fill"></i>
@@ -114,18 +113,22 @@ const Booking = ({ car, avgRating }) => {
       <div className="booking__bottom">
         <ListGroup>
           <ListGroupItem className="border-0 px-0">
-            <h5 className="d-flex align-items-center gap-1">
-              ${price} <i class="ri-close-line"></i> 1 person
+            <h5 className="d-flex align-items-center gap-1" style={{ color: 'black' }}>
+              Rs :{price} <i class="ri-close-line"></i>
             </h5>
-            <span>${price}</span>
+            <span style={{ color: 'black' }}>Rs :{price}</span>
           </ListGroupItem>
           <ListGroupItem className="border-0 px-0">
-            <h5>Service Charge</h5>
-            <span>${serviceFee}</span>
+
+            <h5 style={{ color: 'black' }}>Service Charge</h5>
+
+            <span style={{ color: 'black' }} >Rs :{serviceFee}</span>
           </ListGroupItem>
+          
           <ListGroupItem className="border-0 px-0 total">
             <h5>Total</h5>
-            <span>${totalAmount}</span>
+            <span style={{ color: 'black' }} >Rs :{totalAmount}</span>
+          
           </ListGroupItem>
         </ListGroup>
         <Button className="btn primary__btn w-100 mt-4" onClick={handleClick}>

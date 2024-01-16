@@ -4,7 +4,7 @@ const bookingSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Types.ObjectId,
-      ref: "car",
+      ref: "Car",
     },
     userEmail: {
       type: String,

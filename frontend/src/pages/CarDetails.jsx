@@ -84,7 +84,7 @@ const CarDetails = () => {
                   <div className="car__info">
                     <h2>{title}</h2>
                     <div className="d-flex align-items-center gap-5">
-                      <span className="car__rating d-flex align-items-center gap-1">
+                      <span className="car__rating d-flex align-items-center gap-1" style={{ color: 'black' }} >
                         <i
                           class="ri-star-fill"
                           style={{ color: "var(--secondary-color)" }}
@@ -96,24 +96,14 @@ const CarDetails = () => {
                           <span>({reviews?.length})</span>
                         )}
                       </span>
-
-                      <span>
-                        <i class="ri-map-pin-user-fill"></i> {address}
-                      </span>
                     </div>
                     <div className="car__extra-details">
-                      <span>
+                      <span style={{ color: 'black' }}>
                         <i class="ri-map-pin-2-line"></i> {city}
                       </span>
-                      <span>
-                        <i class="ri-money-dollar-circle-line"></i> ${price}{" "}
-                        /per person
-                      </span>
-                      <span>
-                        <i class="ri-map-pin-time-line"></i> {distance} k/m
-                      </span>
-                      <span>
-                        <i class="ri-group-line"></i> {maxGroupSize} people
+                      <span style={{ color: 'black' }} >
+                      <i class="ri-money-rupee-circle-fill"></i> Rs :{price}{" "}
+                      
                       </span>
                     </div>
                     <h5>Description</h5>

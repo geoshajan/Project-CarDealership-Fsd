@@ -8,7 +8,7 @@ import { AuthContext } from "../context/AuthContext";
 import { BASE_URL } from "../utils/config";
 
 const Login = () => {
-  const [credentials, setCredentials] = useState({
+    const [credentials, setCredentials] = useState({
     email: undefined,
     password: undefined,
   });

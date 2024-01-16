@@ -7,9 +7,15 @@ const cars = [
     colour:"Yellow",
     photo:"/car-images/car-img01.jpg",
     desc:"The all new Lamborgini Urus",
-    price:"5,00,00,000",
+    price:50000000,
+    reviews: [
+      {
+        name:"jhon doe",
+        rating:4.6,
+      },
+    ],
+    avgRating:4.5,
     featured:true,
-    reviews: []
   },
   {
     id: "02",
@@ -19,9 +25,16 @@ const cars = [
     colour:"Red",
     photo:"/car-images/car-img02.jpg",
     desc:"Any Dscription",
-    price:"10,00,00,000",
+    price:100000000,
     featured:true,
-    reviews: []
+    reviews: [
+      {
+        name:"jhon doe",
+        rating:4.6,
+      },
+    ],
+    avgRating:4.5,
+    featured:true,
   },
   {
     id: "03",
@@ -31,9 +44,15 @@ const cars = [
     colour:"Red",
     photo:"/car-images/car-img03.jpg",
     desc:"Any ",
-    price:"2,00,00,000",
+    price:20000000,
+    reviews: [
+      {
+        name:"jhon doe",
+        rating:4.6,
+      },
+    ],
+    avgRating:4.5,
     featured:true,
-    reviews: []
   },
   {
     id: "04",
@@ -43,9 +62,15 @@ const cars = [
     colour:"White",
     photo:"/car-images/car-img04.jpg",
     desc:"Any desc",
-    price:"1,50,00,000",
+    price:15000000,
+    reviews: [
+      {
+        name:"jhon doe",
+        rating:4.6,
+      },
+    ],
+    avgRating:4.5,
     featured:true,
-    reviews: []
   },
   {
     id: "05",
@@ -55,9 +80,15 @@ const cars = [
     colour:"Grey",
     photo:"/car-images/car-img05.jpg",
     desc:"Any desc",
-    price:"60,00,000",
+    price:6000000,
+    reviews: [
+      {
+        name:"jhon doe",
+        rating:4.6,
+      },
+    ],
+    avgRating:4.5,
     featured:true,
-    reviews: []
   },
   {
     id: "06",
@@ -67,21 +98,33 @@ const cars = [
     colour:"White",
     photo:"/car-images/car-img06.jpg",
     desc:"Any desc",
-    price:"2,00,00,000",
+    price:20000000,
+    reviews: [
+      {
+        name:"jhon doe",
+        rating:4.6,
+      },
+    ],
+    avgRating:4.5,
     featured:true,
-    reviews: []
   },
   {
     id: "07",
     title : "Ferrari SF90",
     transmission:"Automatic",
     fuel:"petrol",
-    colour:"Blue",
+    colour:"Red",
     photo:"/car-images/car-img07.jpg",
     desc:"Any desc",
-    price:"6,00,00,000",
+    price:60000000,
+    reviews: [
+      {
+        name:"jhon doe",
+        rating:4.6,
+      },
+    ],
+    avgRating:4.5,
     featured:true,
-    reviews: []
   },
   {
     id: "08",
@@ -91,9 +134,15 @@ const cars = [
     colour:"Blue",
     photo:"/car-images/car-img08.jpg",
     desc:"Any Desc",
-    price:"1,75,00,000",
+    price:17500000,
+    reviews: [
+      {
+        name:"jhon doe",
+        rating:4.6,
+      },
+    ],
+    avgRating:4.5,
     featured:true,
-    reviews: []
   },
 ];
 

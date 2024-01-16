@@ -20,7 +20,7 @@ const SearchBar = () => {
     }
 
     const res = await fetch(
-      `${BASE_URL}/cars/search/getcarBySearch?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`
+      `${BASE_URL}/cars/search/getCarBySearch?city=${location}&distance=${distance}&maxGroupSize=${maxGroupSize}`
     );
     if (!res.ok) alert("Something went wrong");
 

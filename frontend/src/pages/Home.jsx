@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import SearchBar from "../shared/SearchBar";
 import ServiceList from "../services/ServiceList";
-import FeaturedcarList from "../components/Featured-cars/FeaturedCarList";
+import FeaturedCarList from "../components/Featured-cars/FeaturedCarList";
 import MasonryImagesGallery from "../components/Image-gallery/MasonryImagesGallery";
 import Testimonials from "../components/Testimonial/Testimonials";
 import Subtitle from '../shared/Subtitle';
@@ -141,7 +141,7 @@ const Home = () => {
               <Subtitle subtitle={"Explore"} />
               <h2 className="featured__car-title">Our featured cars</h2>
             </Col>
-            <FeaturedcarList />
+            <FeaturedCarList />
           </Row>
         </Container>
       </section>
