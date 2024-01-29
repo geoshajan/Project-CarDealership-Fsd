@@ -8,7 +8,7 @@ import { AuthContext } from "../context/AuthContext";
 import { BASE_URL } from "../utils/config";
 
 const Login = () => {
-    const [credentials, setCredentials] = useState({
+  const [credentials, setCredentials] = useState({
     email: undefined,
     password: undefined,
   });
@@ -33,12 +33,24 @@ const Login = () => {
       });
 
       const result = await res.json();
-      if (!res.ok) alert(result.message);
 
-      console.log(result.data);
+      if (!res.ok) {
+        alert(result.message);
+        dispatch({ type: "LOGIN_FAILURE", payload: result.message });
+        return;
+      }
+
+      const userRole = result.role;
 
       dispatch({ type: "LOGIN_SUCCESS", payload: result.data });
-      navigate("/");
+
+      if (userRole === "user") {
+        navigate("/home");
+      } else if (userRole === "admin") {
+        navigate("/adminhome");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.message });
     }
@@ -87,7 +99,7 @@ const Login = () => {
                     </Button>
                   </Form>
                   <p>
-                    Don't have an account? <Link to="/register" className="Create_btn" > <u>Create</u></Link>
+                    Don't have an account? <Link to="/register">Create</Link>
                   </p>
                 </div>
               </div>

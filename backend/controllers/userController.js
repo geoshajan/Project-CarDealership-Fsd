@@ -65,11 +65,13 @@ export const getSingleUser = async (req, res) => {
 
   try {
     const user = await User.findById(id);
+    const role = user.data.role;
 
     res.status(200).json({
       success: true,
       message: "Successfull",
       data: user,
+      role: role,
     });
   } catch (err) {
     res.status(404).json({

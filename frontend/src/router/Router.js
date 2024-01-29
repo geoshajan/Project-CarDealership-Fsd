@@ -7,6 +7,9 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ThankYou from "../pages/ThankYou";
 import SearchResultList from "../pages/SearchResultList";
+import AdminHome from "../pages/AdminHome";
+import Carsadmin from "../pages/Carsadmin";
+import Bookings from "../pages/Bookings";
 
 const Router = () => {
   return (
@@ -19,6 +22,12 @@ const Router = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/thank-you" element={<ThankYou />} />
       <Route path="/car/search" element={<SearchResultList />} />
+      <Route path="/adminhome" element={<AdminHome />} />
+      <Route path="/carsadmin" element={<Carsadmin/>}/>
+      <Route path="/bookings" element={<Bookings />} />
+
+      
+
     </Routes>
   );
 };

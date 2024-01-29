@@ -89,16 +89,16 @@ const Booking = ({ car, avgRating }) => {
             />
           </FormGroup>
           <FormGroup className="d-flex align-items-center gap-3">
-            <input
+            {/* <input
               type="date"
               placeholder=""
               id="bookAt"
               required
               onChange={handleChange}
-            />
+            /> */}
             <input
               type="number"
-              placeholder="Guest"
+              placeholder="number of cars"
               id="guestSize"
               required
               onChange={handleChange}
