@@ -2,6 +2,7 @@ import User from "../models/User.js";
 
 export const createUser = async (req, res) => {
   const newUser = new User(req.body);
+
   try {
     const savedUser = await newUser.save();
 
@@ -27,7 +28,7 @@ export const updateUser = async (req, res) => {
         $set: req.body,
       },
       { new: true }
-    );
+    ); 
 
     res.status(200).json({
       success: true,
@@ -53,7 +54,8 @@ export const deleteUser = async (req, res) => {
       message: "Successfully deleted",
     });
   } catch (err) {
-    res.status(500).json({
+    console.error("Error in userCounts:", err);
+    res.status(404).json({
       success: false,
       message: "failed to delete",
     });
@@ -65,13 +67,11 @@ export const getSingleUser = async (req, res) => {
 
   try {
     const user = await User.findById(id);
-    const role = user.data.role;
 
     res.status(200).json({
       success: true,
       message: "Successfull",
       data: user,
-      role: role,
     });
   } catch (err) {
     res.status(404).json({
@@ -83,11 +83,11 @@ export const getSingleUser = async (req, res) => {
 
 export const getAllUser = async (req, res) => {
   try {
-    const users = await User.find({});
-
+    const users = await User.find({ role: "user" });
+    const userCount = await User.countDocuments({ role: "user" });
     res.status(200).json({
       success: true,
-      count: users.length,
+      count: userCount,
       message: "Successful",
       data: users,
     });

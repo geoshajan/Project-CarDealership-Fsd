@@ -8,14 +8,14 @@ import {
 
 const router = express.Router();
 
-import { verifyUser } from "../utils/verifyToken.js";
+import { verifyAdmin, verifyUser } from "../utils/verifyToken.js";
 
 router.put("/:id", verifyUser, updateUser);
 
-router.delete("/:id", verifyUser, deleteUser);
+router.delete("/:id", deleteUser);
 
-router.get("/:id", getSingleUser);
+router.get("/:id", verifyUser, getSingleUser);
 
-router.get("/",  getAllUser);
+router.get("/", verifyAdmin, getAllUser);
 
 export default router;

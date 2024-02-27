@@ -7,21 +7,16 @@ const carSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    transmission: {
+    city: {
       type: String,
       required: true,
     },
-    city:{
+    address: {
       type: String,
       required: true,
     },
-    
-    fuel: {
-      type: String,
-      required: true,
-    },
-    colour: {
-      type: String,
+    distance: {
+      type: Number,
       required: true,
     },
     photo: {
@@ -36,17 +31,22 @@ const carSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-
-    featured: {
-      type: Boolean,
-      default: false,
+    maxGroupSize: {
+      type: Number,
+      required: true,
     },
+
     reviews: [
       {
         type: mongoose.Types.ObjectId,
         ref: "Review",
       },
     ],
+
+    featured: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );

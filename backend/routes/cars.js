@@ -8,17 +8,17 @@ import {
   getCarBySearch,
   getCarCount,
   updateCar,
-} from "./../controllers/carController.js";
+} from "../controllers/carController.js";
 
 import { verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
-router.post("/", createCar);
+router.post("/create", verifyAdmin, createCar);
 
-router.put("/:id", updateCar);
+router.put("/update/:id", verifyAdmin, updateCar);
 
-router.delete("/:id", deleteCar);
+router.delete("/:id", verifyAdmin, deleteCar);
 
 router.get("/:id", getSingleCar);
 

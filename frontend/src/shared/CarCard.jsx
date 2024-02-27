@@ -5,7 +5,7 @@ import "./car-card.css";
 import calculateAvgRating from "../utils/avgRatings";
 
 const CarCard = ({ car }) => {
-  const { _id, title, transmission, photo, price, featured, reviews } = car;
+  const { _id, title, city, photo, price, featured, reviews } = car;
 
   const { totalRating, avgRating } = calculateAvgRating(reviews);
 
@@ -19,8 +19,7 @@ const CarCard = ({ car }) => {
         <CardBody>
           <div className="card__top d-flex align-items-center justify-content-between">
             <span className="car__location d-flex align-items-center gap-1">
-              {/* <i class="ri-map-pin-line"></i>  */}
-              {transmission}
+              <i class="ri-map-pin-line"></i> {city}
             </span>
             <span className="car__rating d-flex align-items-center gap-1">
               <i class="ri-star-fill"></i> {avgRating == 0 ? null : avgRating}
@@ -32,7 +31,7 @@ const CarCard = ({ car }) => {
           </h5>
           <div className="card__bottom d-flex align-items-center justify-content-between mt-3">
             <h5>
-            Rs : {price} <span></span>
+              Rs.{price} <span>/per person</span>
             </h5>
             <button className="btn booking__btn">
               <Link to={`/cars/${_id}`}>Book Now</Link>

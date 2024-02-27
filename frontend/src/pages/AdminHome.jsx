@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { BASE_URL } from "../utils/config";
 import Card from "../components/Card";
-// import "../pages/adminhome.css";
+import "../pages/adminhome.css";
 
 const AdminHome = () => {
-  const [userCount, setUserCount] = useState(0); 
-  const [carCount, setCarCount] = useState(0); 
+  const [userCount, setUserCount] = useState(0);
+  const [carCount, setCarCount] = useState(0);
   const [bookingCount, setBookingCount] = useState(0);
 
   useEffect(() => {
@@ -17,9 +17,7 @@ const AdminHome = () => {
         });
         if (userResponse.ok) {
           const userData = await userResponse.json();
-          console.log(userData,"userdata");
           const count = userData.count;
-          
           console.log(count);
           setUserCount(count || 0);
         } else {
@@ -59,7 +57,7 @@ const AdminHome = () => {
           const bookings = await userResponse.json();
           const count = bookings.count;
           console.log(count);
-          setBookingCount(count || 0); // Use count or default to 0 if undefined
+          setBookingCount(count || 0);
         } else {
           console.error("Error fetching user count:", userResponse.status);
         }
@@ -79,7 +77,6 @@ const AdminHome = () => {
         <Card title="Cars" count={carCount} />
         <Card title="Bookings" count={bookingCount} />
       </div>
-      
     </div>
   );
 };

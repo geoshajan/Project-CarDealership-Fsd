@@ -3,7 +3,6 @@ import CarCard from "../../shared/CarCard";
 import { Col } from "reactstrap";
 import useFetch from "../../hooks/useFetch";
 import { BASE_URL } from "../../utils/config";
-import carData from "../../assets/data/cars.js"
 
 const FeaturedCarList = () => {
   const {

@@ -19,20 +19,27 @@ const Booking = ({ car, avgRating }) => {
     phone: "",
     guestSize: 1,
     bookAt: "",
+    status: "Requested",
+    totalamount: "",
   });
 
   const handleChange = (e) => {
     setBooking((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const serviceFee = 100000;
+  const serviceFee = 10;
   const totalAmount =
     Number(price) * Number(booking.guestSize) + Number(serviceFee);
 
   const handleClick = async (e) => {
     e.preventDefault();
 
-    console.log(booking);
+    const updatedBooking = {
+      ...booking,
+      totalamount: totalAmount, // Add totalAmount to the booking object
+    };
+
+    console.log(updatedBooking);
 
     try {
       if (!user || user == undefined || user == null) {
@@ -42,7 +49,7 @@ const Booking = ({ car, avgRating }) => {
         method: "post",
         headers: { "content-type": "application/json" },
         credentials: "include",
-        body: JSON.stringify(booking),
+        body: JSON.stringify(updatedBooking), // Send the updatedBooking object
       });
       const result = await res.json();
 
@@ -59,14 +66,14 @@ const Booking = ({ car, avgRating }) => {
     <div className="booking">
       <div className="booking__top d-flex align-items-center justify-content-between">
         <h3>
-        Rs :{price}
+          Rs.{price}
+          <span>/per person</span>
         </h3>
         <span className="car__rating d-flex align-items-center">
-          <i class="ri-star-s-fill"></i>
-          {avgRating == 0 ? null : avgRating} ({reviews?.length})
+          <i className="ri-star-s-fill"></i>
+          {avgRating === 0 ? null : avgRating} ({reviews?.length})
         </span>
       </div>
-      {/*================booking form===========*/}
       <div className="booking__form">
         <h5>Information</h5>
         <Form className="booking__info-form" onSubmit={handleClick}>
@@ -89,16 +96,16 @@ const Booking = ({ car, avgRating }) => {
             />
           </FormGroup>
           <FormGroup className="d-flex align-items-center gap-3">
-            {/* <input
+            <input
               type="date"
               placeholder=""
               id="bookAt"
               required
               onChange={handleChange}
-            /> */}
+            />
             <input
               type="number"
-              placeholder="number of cars"
+              placeholder="Guest"
               id="guestSize"
               required
               onChange={handleChange}
@@ -107,35 +114,28 @@ const Booking = ({ car, avgRating }) => {
         </Form>
       </div>
       {/*================booking form end===========*/}
-
       {/*================booking bottom===========*/}
-
       <div className="booking__bottom">
         <ListGroup>
           <ListGroupItem className="border-0 px-0">
-            <h5 className="d-flex align-items-center gap-1" style={{ color: 'black' }}>
-              Rs :{price} <i class="ri-close-line"></i>
+            <h5 className="d-flex align-items-center gap-1">
+              Rs.{price} <i className="ri-close-line"></i> 1 person
             </h5>
-            <span style={{ color: 'black' }}>Rs :{price}</span>
+            <span>Rs.{price}</span>
           </ListGroupItem>
           <ListGroupItem className="border-0 px-0">
-
-            <h5 style={{ color: 'black' }}>Service Charge</h5>
-
-            <span style={{ color: 'black' }} >Rs :{serviceFee}</span>
+            <h5>Service Charge</h5>
+            <span>Rs.{serviceFee}</span>
           </ListGroupItem>
-          
           <ListGroupItem className="border-0 px-0 total">
             <h5>Total</h5>
-            <span style={{ color: 'black' }} >Rs :{totalAmount}</span>
-          
+            <span>Rs.{totalAmount}</span>
           </ListGroupItem>
         </ListGroup>
         <Button className="btn primary__btn w-100 mt-4" onClick={handleClick}>
           Book Now
         </Button>
       </div>
-
       {/*================booking bottom===========*/}
     </div>
   );

@@ -1,6 +1,5 @@
 import Car from "../models/Car.js";
 
-
 export const createCar = async (req, res) => {
   const newCar = new Car(req.body);
 
@@ -13,9 +12,14 @@ export const createCar = async (req, res) => {
       data: savedCar,
     });
   } catch (err) {
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to create.Try again" });
+    console.error("Error creating car:", err);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to create. Try again",
+      error: err.message,
+      stack: err.stack, // Include the stack trace for additional details
+    });
   }
 };
 
@@ -132,7 +136,6 @@ export const getCarBySearch = async (req, res) => {
 
 export const getFeaturedCar = async (req, res) => {
   const page = parseInt(req.query.page);
-
 
   try {
     const cars = await Car.find({ featured: true })

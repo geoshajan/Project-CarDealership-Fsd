@@ -1,8 +1,6 @@
-// carsAdmin.jsx
-
 import React, { useState, useEffect } from "react";
 import { BASE_URL } from "../utils/config";
-import "./CarAdmin.css";
+import "./CarsAdmin.css";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const Carsadmin = () => {
@@ -11,20 +9,37 @@ const Carsadmin = () => {
   const [showAddCarForm, setShowAddCarForm] = useState(false);
   const [newCarData, setNewCarData] = useState({
     title: "",
-    transmission: "",
     city: "",
-    // distance: 0,
+    address: "",
+    distance: 0,
     photo: "",
     desc: "",
     price: 0,
-    // maxGroupSize: 0,
+    maxGroupSize: 0,
+    featured: false,
+  });
+
+  const [editMode, setEditMode] = useState(false);
+  const [pageCount, setPageCount] = useState(0);
+  const [page, setPage] = useState(0);
+
+  const [editCarData, setEditCarData] = useState({
+    id: null,
+    title: "",
+    city: "",
+    address: "",
+    distance: 0,
+    photo: "",
+    desc: "",
+    price: 0,
+    maxGroupSize: 0,
     featured: false,
   });
 
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/cars?page=0`, {
+        const response = await fetch(`${BASE_URL}/cars?page=${page}`, {
           method: "GET",
           credentials: "include",
         });
@@ -40,8 +55,26 @@ const Carsadmin = () => {
       }
     };
 
+    const fetchCarCount = async () => {
+      try {
+        const response = await fetch(`${BASE_URL}/cars/search/getCarCount`, {
+          method: "GET",
+          credentials: "include",
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch car count");
+        }
+        const { data: carCount } = await response.json();
+        const pages = Math.ceil(carCount / 8);
+        setPageCount(pages);
+      } catch (error) {
+        console.error("Error fetching car count:", error);
+      }
+    };
+
     fetchCars();
-  }, []);
+    fetchCarCount();
+  }, [page]);
 
   const handleDelete = async (id) => {
     try {
@@ -54,7 +87,6 @@ const Carsadmin = () => {
         throw new Error("Failed to delete car");
       }
 
-      // Filter out the deleted car from the state
       setCars((prevCars) => prevCars.filter((car) => car._id !== id));
     } catch (error) {
       console.error("Error deleting car:", error);
@@ -65,42 +97,94 @@ const Carsadmin = () => {
     setShowAddCarForm(true);
   };
 
-  const handleAddCarChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setNewCarData((prevData) => ({
-      ...prevData,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+  const handleEditClick = (car) => {
+    setEditMode(true);
+    setEditCarData({
+      id: car._id,
+      title: car.title,
+      city: car.city,
+      address: car.address,
+      distance: car.distance,
+      photo: car.photo,
+      desc: car.desc,
+      price: car.price,
+      maxGroupSize: car.maxGroupSize,
+      featured: car.featured,
+    });
+    setShowAddCarForm(true);
   };
 
-  const handleAddCarSubmit = async (event) => {
+  const handleAddCarChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    if (editMode) {
+      setEditCarData((prevData) => ({
+        ...prevData,
+        [name]: type === "checkbox" ? checked : value,
+      }));
+    } else {
+      setNewCarData((prevData) => ({
+        ...prevData,
+        [name]: type === "checkbox" ? checked : value,
+      }));
+    }
+  };
+
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await fetch(`${BASE_URL}/cars/create`, {
-        method: "POST",
+      const endpoint = editMode
+        ? `${BASE_URL}/cars/update/${editCarData.id}`
+        : `${BASE_URL}/cars/create`;
+      const method = editMode ? "PUT" : "POST";
+
+      const response = await fetch(endpoint, {
+        method: method,
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newCarData),
+        body: JSON.stringify(editMode ? editCarData : newCarData),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to add car");
+        throw new Error(
+          editMode ? "Failed to update car" : "Failed to add car"
+        );
       }
 
       const result = await response.json();
-      const addedCar = result.data;
-      console.log("added car", addedCar);
+      const updatedCar = result.data;
 
-      setCars((prevCars) => [...prevCars, addedCar]);
+      if (editMode) {
+        setCars((prevCars) =>
+          prevCars.map((car) =>
+            car._id === updatedCar._id ? updatedCar : car
+          )
+        );
+      } else {
+        setCars((prevCars) => [...prevCars, updatedCar]);
+      }
+
+      setEditMode(false);
       setShowAddCarForm(false);
-      // Reset the newcarData state
+      setEditCarData({
+        id: null,
+        title: "",
+        city: "",
+        address: "",
+        distance: 0,
+        photo: "",
+        desc: "",
+        price: 0,
+        maxGroupSize: 0,
+        featured: false,
+      });
       setNewCarData({
         title: "",
-        transmission: "",
         city: "",
+        address: "",
         distance: 0,
         photo: "",
         desc: "",
@@ -109,18 +193,18 @@ const Carsadmin = () => {
         featured: false,
       });
     } catch (error) {
-      console.error("Error adding car:", error);
+      console.error(`Error ${editMode ? "updating" : "adding"} car:`, error);
     }
   };
 
   return (
     <div>
-      <h1>Cars Admin</h1>
+      <h1>Cars</h1>
       <Button variant="contained" color="primary" onClick={handleAddCarClick}>
         Add car
       </Button>
       {showAddCarForm && (
-        <Form onSubmit={handleAddCarSubmit}>
+        <Form className="form-container" onSubmit={handleFormSubmit}>
           <FormGroup>
             <Label for="title">Title</Label>
             <Input
@@ -128,19 +212,7 @@ const Carsadmin = () => {
               name="title"
               id="title"
               placeholder="Enter title"
-              value={newCarData.title}
-              onChange={handleAddCarChange}
-              required
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="transmission">Transmission</Label>
-            <Input
-              type="text"
-              name="transmission"
-              id="transmission"
-              placeholder="Choose transmission"
-              value={newCarData.transmission}
+              value={editMode ? editCarData.title : newCarData.title}
               onChange={handleAddCarChange}
               required
             />
@@ -152,7 +224,19 @@ const Carsadmin = () => {
               name="city"
               id="city"
               placeholder="Enter city"
-              value={newCarData.city}
+              value={editMode ? editCarData.city : newCarData.city}
+              onChange={handleAddCarChange}
+              required
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="address">Address</Label>
+            <Input
+              type="text"
+              name="address"
+              id="address"
+              placeholder="Enter address"
+              value={editMode ? editCarData.address : newCarData.address}
               onChange={handleAddCarChange}
               required
             />
@@ -164,11 +248,11 @@ const Carsadmin = () => {
               name="distance"
               id="distance"
               placeholder="Enter distance"
-              value={newCarData.distance}
+              value={editMode ? editCarData.distance : newCarData.distance}
               onChange={handleAddCarChange}
               required
             />
-          // </FormGroup>
+          </FormGroup>
           <FormGroup>
             <Label for="photo">Photo URL</Label>
             <Input
@@ -176,7 +260,7 @@ const Carsadmin = () => {
               name="photo"
               id="photo"
               placeholder="Enter photo URL"
-              value={newCarData.photo}
+              value={editMode ? editCarData.photo : newCarData.photo}
               onChange={handleAddCarChange}
               required
             />
@@ -188,7 +272,7 @@ const Carsadmin = () => {
               name="desc"
               id="desc"
               placeholder="Enter description"
-              value={newCarData.desc}
+              value={editMode ? editCarData.desc : newCarData.desc}
               onChange={handleAddCarChange}
               required
             />
@@ -200,7 +284,7 @@ const Carsadmin = () => {
               name="price"
               id="price"
               placeholder="Enter price"
-              value={newCarData.price}
+              value={editMode ? editCarData.price : newCarData.price}
               onChange={handleAddCarChange}
               required
             />
@@ -212,7 +296,9 @@ const Carsadmin = () => {
               name="maxGroupSize"
               id="maxGroupSize"
               placeholder="Enter max group size"
-              value={newCarData.maxGroupSize}
+              value={
+                editMode ? editCarData.maxGroupSize : newCarData.maxGroupSize
+              }
               onChange={handleAddCarChange}
               required
             />
@@ -224,14 +310,16 @@ const Carsadmin = () => {
                 type="checkbox"
                 id="featured"
                 name="featured"
-                checked={newCarData.featured}
+                checked={
+                  editMode ? editCarData.featured : newCarData.featured
+                }
                 onChange={handleAddCarChange}
               />
               Featured
             </Label>
           </FormGroup>
           <Button color="primary" type="submit">
-            Save
+            {editMode ? "Update" : "Save"}
           </Button>{" "}
           <Button color="secondary" onClick={() => setShowAddCarForm(false)}>
             Cancel
@@ -241,30 +329,48 @@ const Carsadmin = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className="car-card-container">
-          {cars.map((car) => (
-            <div key={car._id} className="car-card">
-              <img src={car.photo} alt="car-img" />
-              <h2>{car.title}</h2>
-              <h4>Rs.{car.price}</h4>
-              <p>{car.address}</p>
-              <p>{car.description}</p>
-              <div className="button-container">
-                <Button
-                  color="danger"
-                  variant="contained"
-                  onClick={() => handleDelete(car._id)}
-                >
-                  Delete
-                </Button>{" "}
-                <span className="spacer"></span>{" "}
-                <Button color="primary" variant="contained">
-                  Edit
-                </Button>
+        <>
+          <div className="car-card-container">
+            {cars.map((car) => (
+              <div key={car._id} className="car-card">
+                <img src={car.photo} alt="car-img" />
+                <h2>{car.title}</h2>
+                <h4>Rs.{car.price}</h4>
+                <p>{car.address}</p>
+                <p>{car.desc}</p>
+
+                <div className="button-container">
+                  <Button
+                    color="danger"
+                    variant="contained"
+                    onClick={() => handleDelete(car._id)}
+                  >
+                    Delete
+                  </Button>{" "}
+                  <span className="spacer"></span>{" "}
+                  <Button
+                    color="primary"
+                    variant="contained"
+                    onClick={() => handleEditClick(car)}
+                  >
+                    Edit
+                  </Button>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+          <div className="pagination d-flex align-items-center justify-content-center mt-4 gap-3">
+            {[...Array(pageCount).keys()].map((number) => (
+              <span
+                key={number}
+                onClick={() => setPage(number)}
+                className={page === number ? "active__page" : ""}
+              >
+                {number + 1}
+              </span>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

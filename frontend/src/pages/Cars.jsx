@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CommonSection from "../shared/CommonSection";
 import "../styles/car.css";
-import CarCard from "../shared/CarCard";
+import CarCard from "./../shared/CarCard";
 import SearchBar from "../shared/SearchBar";
 import { Col, Container, Row } from "reactstrap";
 
@@ -17,7 +17,7 @@ const Cars = () => {
     loading,
     error,
   } = useFetch(`${BASE_URL}/cars?page=${page}`);
-  const { data: carCount } = useFetch(`${BASE_URL}/cars/search/getcarCount`);
+  const { data: carCount } = useFetch(`${BASE_URL}/cars/search/getCarCount`);
 
   useEffect(() => {
     const pages = Math.ceil(carCount / 8);
@@ -67,7 +67,6 @@ const Cars = () => {
           )}
         </Container>
       </section>
-      
     </>
   );
 };

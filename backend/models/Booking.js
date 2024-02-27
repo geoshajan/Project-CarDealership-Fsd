@@ -29,10 +29,14 @@ const bookingSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
-    status:{
+    status: {
       type: String,
-      required:true,
-    }
+      required: true,
+    },
+    totalamount: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true }
 );

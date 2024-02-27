@@ -24,12 +24,12 @@ const Home = () => {
       caption: 'Slide 1',
       key: 1,
     },
-    {
-      src: 'https://thumbor.forbes.com/thumbor/fit-in/960x/filters:format(jpg)/https://www.forbes.com/wheels/wp-content/uploads/2020/12/Nissan-zproto-400z-960x540-1.png',
-      altText: 'Slide 2',
-      caption: 'Slide 2',
-      key: 2,
-    },
+    // {
+    //   src: "",
+    //   altText: 'Slide 2',
+    //   caption: 'Slide 2',
+    //   key: 2,
+    // },
     {
       src: 'https://www.kia.com/content/dam/kwcms/au/en/images/category/performance/media-banner-960x540.webp',
       altText: 'Slide 3',

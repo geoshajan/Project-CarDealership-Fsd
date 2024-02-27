@@ -53,7 +53,7 @@ const Bookings = () => {
         setBookings((prevBookings) =>
           prevBookings.map((booking) =>
             booking._id === bookingId
-              ? { ...booking, status: newStatus }
+              ? { ...booking, status: "accepted" }
               : booking
           )
         );
@@ -90,7 +90,7 @@ const Bookings = () => {
 
   const renderAcceptButton = (status, bookingId) => {
     switch (status) {
-      case "Requested":
+      case "requested":
         return (
           <button
             className="accept"
@@ -126,9 +126,9 @@ const Bookings = () => {
           <thead>
             <tr>
               <th>Sl No</th>
-              <th>car Name</th>
-              <th>Client Name</th>
-              <th>No of Cars</th>
+              <th>Car Name</th>
+              <th>Guest Name</th>
+              <th>No of People</th>
               <th>Booked At</th>
               <th>Manage</th>
             </tr>
@@ -140,7 +140,7 @@ const Bookings = () => {
                 <td>{booking.carName}</td>
                 <td>{booking.fullName}</td>
                 <td>{booking.guestSize}</td>
-                <td>{booking.bookAt}</td>
+                <td>{new Date(booking.bookAt).toLocaleString()}</td>
                 <td>
                   {renderAcceptButton(booking.status, booking._id)}
                   <button

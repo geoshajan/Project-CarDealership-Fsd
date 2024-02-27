@@ -93,7 +93,7 @@ const Register = () => {
                     </Button>
                   </Form>
                   <p>
-                    Already have an account? <Link to="/login" className="Create_btn" > <u>Login</u></Link>
+                    Already have an account? <Link to="/login">Login</Link>
                   </p>
                 </div>
               </div>

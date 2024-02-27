@@ -73,7 +73,7 @@
 }
 
 .booking__btn {
-  background: black !important;
+  background: var(--secondary-color) !important;
   cursor: pointer;
   padding: 0.2rem 0.5rem !important;
 }
