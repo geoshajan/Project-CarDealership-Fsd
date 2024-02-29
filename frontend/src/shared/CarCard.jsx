@@ -19,10 +19,10 @@ const CarCard = ({ car }) => {
         <CardBody>
           <div className="card__top d-flex align-items-center justify-content-between">
             <span className="car__location d-flex align-items-center gap-1">
-              <i class="ri-map-pin-line"></i> {city}
+              {/* <i class="ri-map-pin-line"></i> {city} */}
             </span>
             <span className="car__rating d-flex align-items-center gap-1">
-              <i class="ri-star-fill"></i> {avgRating == 0 ? null : avgRating}
+              {/* <i class="ri-star-fill"></i> {avgRating == 0 ? null : avgRating} */}
               {totalRating == 0 ? "Not Rated" : <span>({reviews.length})</span>}
             </span>
           </div>
@@ -31,7 +31,7 @@ const CarCard = ({ car }) => {
           </h5>
           <div className="card__bottom d-flex align-items-center justify-content-between mt-3">
             <h5>
-              Rs.{price} <span>/per person</span>
+              Rs.{price} <span></span>
             </h5>
             <button className="btn booking__btn">
               <Link to={`/cars/${_id}`}>Book Now</Link>

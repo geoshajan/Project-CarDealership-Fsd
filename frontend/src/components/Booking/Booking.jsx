@@ -19,7 +19,7 @@ const Booking = ({ car, avgRating }) => {
     phone: "",
     guestSize: 1,
     bookAt: "",
-    status: "Requested",
+    status: "requested",
     totalamount: "",
   });
 
@@ -34,9 +34,18 @@ const Booking = ({ car, avgRating }) => {
   const handleClick = async (e) => {
     e.preventDefault();
 
+    if (
+      !booking.fullName ||
+      !booking.phone ||
+      !booking.bookAt ||
+      !booking.guestSize
+    ) {
+      return alert("All fields are required");
+    }
+
     const updatedBooking = {
       ...booking,
-      totalamount: totalAmount, // Add totalAmount to the booking object
+      totalamount: totalAmount,
     };
 
     console.log(updatedBooking);
@@ -49,7 +58,7 @@ const Booking = ({ car, avgRating }) => {
         method: "post",
         headers: { "content-type": "application/json" },
         credentials: "include",
-        body: JSON.stringify(updatedBooking), // Send the updatedBooking object
+        body: JSON.stringify(updatedBooking),
       });
       const result = await res.json();
 
@@ -67,7 +76,6 @@ const Booking = ({ car, avgRating }) => {
       <div className="booking__top d-flex align-items-center justify-content-between">
         <h3>
           Rs.{price}
-          <span>/per person</span>
         </h3>
         <span className="car__rating d-flex align-items-center">
           <i className="ri-star-s-fill"></i>
@@ -105,7 +113,7 @@ const Booking = ({ car, avgRating }) => {
             />
             <input
               type="number"
-              placeholder="Guest"
+              placeholder="no of cars"
               id="guestSize"
               required
               onChange={handleChange}
@@ -118,14 +126,14 @@ const Booking = ({ car, avgRating }) => {
       <div className="booking__bottom">
         <ListGroup>
           <ListGroupItem className="border-0 px-0">
-            <h5 className="d-flex align-items-center gap-1">
-              Rs.{price} <i className="ri-close-line"></i> 1 person
+            <h5 className="d-flex align-items-center gap-1" style={{color:"black"}}>
+              Rs.{price} <i className="ri-close-line"></i>
             </h5>
-            <span>Rs.{price}</span>
+            <span style={{color:"black"}}>Rs.{price}</span>
           </ListGroupItem>
           <ListGroupItem className="border-0 px-0">
-            <h5>Service Charge</h5>
-            <span>Rs.{serviceFee}</span>
+            <h5 style={{color:"black"}}>Service Charge</h5>
+            <span style={{color:"black"}}>Rs.{serviceFee}</span>
           </ListGroupItem>
           <ListGroupItem className="border-0 px-0 total">
             <h5>Total</h5>

@@ -9,13 +9,12 @@ const Carsadmin = () => {
   const [showAddCarForm, setShowAddCarForm] = useState(false);
   const [newCarData, setNewCarData] = useState({
     title: "",
-    city: "",
-    address: "",
-    distance: 0,
+    transmission: "",
+    fuel: "",
+    colour: "",
     photo: "",
     desc: "",
     price: 0,
-    maxGroupSize: 0,
     featured: false,
   });
 
@@ -26,13 +25,12 @@ const Carsadmin = () => {
   const [editCarData, setEditCarData] = useState({
     id: null,
     title: "",
-    city: "",
-    address: "",
-    distance: 0,
+    transmission: "",
+    fuel: "",
+    colour: "",
     photo: "",
     desc: "",
     price: 0,
-    maxGroupSize: 0,
     featured: false,
   });
 
@@ -103,12 +101,12 @@ const Carsadmin = () => {
       id: car._id,
       title: car.title,
       city: car.city,
-      address: car.address,
-      distance: car.distance,
+      transmission: car.transmission,
+      fuel: car.fuel,
+      colour: car.colour,
       photo: car.photo,
       desc: car.desc,
       price: car.price,
-      maxGroupSize: car.maxGroupSize,
       featured: car.featured,
     });
     setShowAddCarForm(true);
@@ -170,28 +168,28 @@ const Carsadmin = () => {
       setEditMode(false);
       setShowAddCarForm(false);
       setEditCarData({
-        id: null,
         title: "",
         city: "",
-        address: "",
-        distance: 0,
+        transmission: "",
+        fuel: "",
+        colour:"",
         photo: "",
         desc: "",
         price: 0,
-        maxGroupSize: 0,
         featured: false,
       });
       setNewCarData({
         title: "",
         city: "",
-        address: "",
-        distance: 0,
+        transmission: "",
+        fuel: "",
+        colour:"",
         photo: "",
         desc: "",
         price: 0,
-        maxGroupSize: 0,
         featured: false,
       });
+      window.alert("Car added successfully");
     } catch (error) {
       console.error(`Error ${editMode ? "updating" : "adding"} car:`, error);
     }
@@ -230,25 +228,40 @@ const Carsadmin = () => {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="address">Address</Label>
+            <Label for="transmission">Transmission</Label>
             <Input
               type="text"
-              name="address"
-              id="address"
-              placeholder="Enter address"
-              value={editMode ? editCarData.address : newCarData.address}
+              name="transmission"
+              id="transmission"
+              placeholder="Enter transmission"
+              value={editMode ? editCarData.transmission : newCarData.transmission}
+              onChange={handleAddCarChange}
+              required
+            />
+          </FormGroup>
+          
+          <FormGroup>
+            <Label for="fuel">Fuel</Label>
+            <Input
+              type="text"
+              name="fuel"
+              id="fuel"
+              placeholder="Enter fuel type"
+              value={editMode ? editCarData.fuel : newCarData.fuel}
               onChange={handleAddCarChange}
               required
             />
           </FormGroup>
           <FormGroup>
-            <Label for="distance">Distance</Label>
+            <Label for="colour">Colour</Label>
             <Input
-              type="number"
-              name="distance"
-              id="distance"
-              placeholder="Enter distance"
-              value={editMode ? editCarData.distance : newCarData.distance}
+              type="text"
+              name="colour"
+              id="colour"
+              placeholder="Enter colour"
+              value={
+                editMode ? editCarData.colour : newCarData.colour
+              }
               onChange={handleAddCarChange}
               required
             />
@@ -289,20 +302,7 @@ const Carsadmin = () => {
               required
             />
           </FormGroup>
-          <FormGroup>
-            <Label for="maxGroupSize">Max Group Size</Label>
-            <Input
-              type="number"
-              name="maxGroupSize"
-              id="maxGroupSize"
-              placeholder="Enter max group size"
-              value={
-                editMode ? editCarData.maxGroupSize : newCarData.maxGroupSize
-              }
-              onChange={handleAddCarChange}
-              required
-            />
-          </FormGroup>
+          
           {/* Featured field (assuming it's a boolean) */}
           <FormGroup check>
             <Label check>

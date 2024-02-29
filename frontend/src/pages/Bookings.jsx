@@ -127,8 +127,8 @@ const Bookings = () => {
             <tr>
               <th>Sl No</th>
               <th>Car Name</th>
-              <th>Guest Name</th>
-              <th>No of People</th>
+              <th>car Name</th>
+              {/* <th>No of cars</th> */}
               <th>Booked At</th>
               <th>Manage</th>
             </tr>
@@ -139,7 +139,7 @@ const Bookings = () => {
                 <td>{index + 1}</td>
                 <td>{booking.carName}</td>
                 <td>{booking.fullName}</td>
-                <td>{booking.guestSize}</td>
+                {/* <td>{booking.guestSize}</td> */}
                 <td>{new Date(booking.bookAt).toLocaleString()}</td>
                 <td>
                   {renderAcceptButton(booking.status, booking._id)}

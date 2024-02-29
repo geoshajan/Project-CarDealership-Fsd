@@ -1,18 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { BASE_URL } from "../utils/config";
+import { useNavigate } from "react-router-dom"; // Import useNavigate from react-router-dom
 import "./Profile.css"; // Import your custom CSS file
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
   const id = user._id;
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/users/${id}`, {
+        const response = await fetch('${BASE_URL}/users/${id}', {
           headers: {
             "content-type": "application/json",
           },
@@ -36,14 +38,24 @@ const Profile = () => {
     }
   }, [user, id]);
 
-  const handleEdit = () => {
-    // Implement the logic for editing the user profile
-    console.log("Editing user profile");
-  };
+  const handleDelete = async (updateUserState) => {
+    try {
+      const response = await fetch('${BASE_URL}/users/${id}', {
+        method: "DELETE",
+        credentials: "include",
+      });
+      const data = await response.json();
 
-  const handleDelete = () => {
-    // Implement the logic for deleting the user profile
-    console.log("Deleting user profile");
+      if (data.success) {
+        alert("User deleted successfully");
+        updateUserState();
+        navigate("/login"); // Navigate to login page after successful deletion
+      } else {
+        console.error("Error deleting user:", data.message);
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
   };
 
   return (
@@ -61,10 +73,10 @@ const Profile = () => {
 
       {profileData && (
         <div className="profile-buttons">
-          <button onClick={handleEdit} className="edit-button">
-            Edit Profile
-          </button>
-          <button onClick={handleDelete} className="delete-button">
+          <button
+            onClick={() => handleDelete(() => {})}
+            className="delete-button"
+          >
             Delete Profile
           </button>
         </div>
